@@ -1,0 +1,18 @@
+{
+  "__version__": "1.0.6",
+  "physics": {
+    "gravity": {
+      "y": 0
+    },
+    "collisionGroups": [
+      {
+        "index": 1,
+        "name": "enemy"
+      }
+    ],
+    "collisionMatrix": {
+      "0": 3,
+      "1": 3
+    }
+  }
+}
