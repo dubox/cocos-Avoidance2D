@@ -55,20 +55,20 @@ export class Enemy extends Component {
                 let dirOffset = this.moveDir.signAngle(normal) * 180 / Math.PI;
 
                 if (dirOffset < 0) {
-                    this.moveDirAngleOffset = dirOffset + 90;
+                    this.moveDirAngleOffset = dirOffset + 90 -30;
                 } else {
-                    this.moveDirAngleOffset = dirOffset - 90;
+                    this.moveDirAngleOffset = dirOffset - 90 +30;
                 }
 
             } else console.log('未检测到障碍物');
 
             if (this.moveDirAngleOffset > 0) {
-                this.moveDirAngleOffset += 30;
+                this.moveDirAngleOffset += 10;
                 if (this.moveDirAngleOffset > 180) {
                     this.moveDirAngleOffset = 180;
                 }
             } else {
-                this.moveDirAngleOffset -= 30;
+                this.moveDirAngleOffset -= 10;
                 if (this.moveDirAngleOffset < -180) {
                     this.moveDirAngleOffset = -180;
                 }
@@ -84,14 +84,15 @@ export class Enemy extends Component {
     }
 
     detour() {
+        let step = Math.min(this.colliderVolume / this.obstacleColliderVolume * 15, 1.5);
         if (this.moveDirAngleOffset > 0.1) {
-            this.moveDirAngleOffset -= Math.min(this.colliderVolume / this.obstacleColliderVolume * 30, 1.5);
+            this.moveDirAngleOffset -= step;
             // this.moveDirAngleOffset -= 1;
             if (this.moveDirAngleOffset < 1) {
                 this.moveDirAngleOffset = 0.1;
             }
         } else if (this.moveDirAngleOffset < -0.1) {
-            this.moveDirAngleOffset += Math.min(this.colliderVolume / this.obstacleColliderVolume * 30, 1.5);
+            this.moveDirAngleOffset += step;
             // this.moveDirAngleOffset += 1;
             if (this.moveDirAngleOffset > -1) {
                 this.moveDirAngleOffset = -0.1;
